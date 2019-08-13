@@ -17,7 +17,7 @@ echo -e ***********************************$NC
 SPEAKER_CARD=$( aplay -l | grep TFA9912 | cut -d ':' -f 1 | cut -d ' ' -f 2 )
 
 if [ -z "$SPEAKER_CARD" ]; then
-    echo "Can not find TFA9912 speaker!"
+    echo -e $RED Can not find TFA9912 speaker! $NC
     exit 1
 else
     speaker-test -t wav -c 2 -l 2 -D hw:$SPEAKER_CARD

@@ -10,6 +10,11 @@ echo -e ***********************************$NC
 
 LEDS=( $(find /sys/class/leds/ -name "pca995x*" | sort) )
 
+if [ -z "$LEDS" ]; then
+    echo -e $RED Can not find PCA995X in sysfs! $NC
+    exit 1
+fi
+
 for i in {1..10}; do
         for LEDS in ${LEDS[@]}; do
                 echo 255 >  "$LEDS"/brightness
